@@ -1,6 +1,62 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'index#index'
+
+  # devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  namespace :settings do
+    resources :profiles, only: [:index, :create]
+  end
+
+  get '/plugin', to: 'plugin#index', as: 'plugin'
+  scope path: '/new', module: :projects, controller: :project, as: 'new' do
+    get  '/', to: :new
+    post '/', to: :create
+  end
+
+  # v3
+  scope controller: :home, path: '/:username' do
+    get '/' => :index, as: 'home'
+    get '/:project_name' => :project, as: 'project'
+
+    scope module: :projects, path: '/:project_name', as: 'project' do
+      resource :settings, only: [:update, :destroy] do
+        get :index, on: :collection
+      end
+
+      resource :editor,  only: [:update] do
+        get :index, on: :collection
+      end
+    end
+  end
+
+  # v1
+  # get   '/:username',               to: 'home#index',   as: 'home'
+  # get   '/:username/:project_name', to: 'home#project', as: 'project'
+  # get   '/:username/:project_name/settings', to: 'home#settings', as: 'project_settings'
+
+  # v2
+  # scope controller: :home, path: '/:username' do
+  #   get '/' => :index, as: 'home'
+  #   get '/:project_name' => :project, as: 'project'
+
+
+  #   scope path: '/:project_name', module: :projects, controller: :edit, as: 'project' do
+  #     get  '/edit' => :index
+  #   end
+
+  #   scope path: '/:project_name', module: :projects, controller: :settings, as: 'project' do
+  #     get   '/settings' => :edit
+  #     patch '/settings' => :update
+  #     put   '/settings' => :update
+
+  #     delete '/'        => :destroy
+  #   end
+  # end
+
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -44,11 +100,11 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+    # concern :toggleable do
+    #   post 'toggle'
+    # end
+    # resources :posts, concerns: :toggleable
+    # resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do
