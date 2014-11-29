@@ -1,0 +1,10 @@
+= form_for @profile, url: settings_profiles_path, method: :post do |f|
+  %dl
+    %dt= t('profiles.username')
+    %dd= f.text_field :username, class: 'form-control', placeholder: t('profiles.username')
+    %dt= t('profiles.name')
+    %dd= f.text_field :name, class: 'form-control', placeholder: t('profiles.name')
+    %dt= t('profiles.email')
+    %dd= f.email_field :email, class: 'form-control', placeholder: t('profiles.email')
+  %p
+    = f.submit t('helper.update'), class: 'btn btn-success'

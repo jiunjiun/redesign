@@ -1,0 +1,50 @@
+.row#project_settings
+  .col-md-3
+    .panel.panel-default
+      / Default panel contents
+      .panel-heading
+        %h3.panel-title= t('options')
+      -# .panel-body
+      / List group
+      %ul.list-group
+        %li.list-group-item
+          =link_to t('profile'), settings_profiles_path
+  .col-md-9
+    - if @project.errors.any?
+      .alert.alert-danger{:role => "alert"}
+        %button.close{"data-dismiss" => "alert", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        - @project.errors.each do |attr, message|
+          = message
+    .panel.panel-default
+      / Default panel contents
+      .panel-heading
+        %h3.panel-title= t('settings')
+      .panel-body
+        = form_for @project, url: '', method: :post do |f|
+          %dl
+            %dt= t('profiles.name')
+            %dd= f.text_field :name, class: 'form-control', placeholder: t('project.name')
+            %dt= t('profiles.url')
+            %dd= f.email_field :url, class: 'form-control', placeholder: t('project.url')
+          %p
+            = f.submit t('helper.update'), class: 'btn btn-success'
+    -# danger
+    - if @project.errors.any?
+      .alert.alert-danger{:role => "alert"}
+        %button.close{"data-dismiss" => "alert", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        - @project.errors.each do |attr, message|
+          = message
+    .panel.panel-danger
+      / Default panel contents
+      .panel-heading
+        %h3.panel-title= t('helper.danger')
+      .panel-body
+        = form_for @project, url: '', method: :post do |f|
+          %h4.pull-left
+            = t('project.del_description')
+          %p.pull-right
+            = f.submit t('helper.delete'), class: 'btn btn-danger'

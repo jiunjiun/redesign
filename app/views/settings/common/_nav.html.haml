@@ -1,0 +1,9 @@
+.panel.panel-default
+  / Default panel contents
+  .panel-heading
+    %h3.panel-title= t('options')
+  -# .panel-body
+  / List group
+  %ul.list-group
+    %li.list-group-item
+      =link_to t('profile'), settings_profiles_path

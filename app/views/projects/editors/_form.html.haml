@@ -1,0 +1,16 @@
+- if @project.errors.any?
+  .alert.alert-danger{:role => "alert"}
+    %button.close{"data-dismiss" => "alert", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+      %span.sr-only Close
+    - @project.errors.each do |attr, message|
+      = message
+      %br/
+= form_for(@project, url: project_editor_path) do |f|
+  %p
+    = f.text_area :stylesheet, class: 'form-control', placeholder: t('project.stylesheet')
+  .row
+    .col-md-6.pull-right
+      .pull-right
+        = link_to 'Back', project_path(params[:username], params[:project_name]), class: 'btn btn-default'
+        = f.submit class: 'btn btn-success'

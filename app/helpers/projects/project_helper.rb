@@ -1,0 +1,2 @@
+module Projects::ProjectHelper
+end

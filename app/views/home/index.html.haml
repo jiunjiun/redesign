@@ -1,0 +1,17 @@
+.row#home
+  .col-md-3
+    .avatar
+      = image_tag "http://graph.facebook.com/#{@current_page_user.uid}/picture?type=large", alt: @current_page_user.name, class: "img-rounded"
+    .names
+      %h3= @current_page_user.name
+    .details
+      %p= @current_page_user.email
+  .col-md-9
+    .panel.panel-default
+      / Default panel contents
+      .panel-heading= t('projects')
+      / List group
+      %ul.list-group
+        - @projects.each do |project|
+          %li.list-group-item
+            = link_to(project.name, project_path(@current_page_user.username, project.name))

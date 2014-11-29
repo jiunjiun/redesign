@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'index#index'
 
-  # devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   namespace :settings do
     resources :profiles, only: [:index, :create]
@@ -28,35 +28,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  # v1
-  # get   '/:username',               to: 'home#index',   as: 'home'
-  # get   '/:username/:project_name', to: 'home#project', as: 'project'
-  # get   '/:username/:project_name/settings', to: 'home#settings', as: 'project_settings'
-
-  # v2
-  # scope controller: :home, path: '/:username' do
-  #   get '/' => :index, as: 'home'
-  #   get '/:project_name' => :project, as: 'project'
-
-
-  #   scope path: '/:project_name', module: :projects, controller: :edit, as: 'project' do
-  #     get  '/edit' => :index
-  #   end
-
-  #   scope path: '/:project_name', module: :projects, controller: :settings, as: 'project' do
-  #     get   '/settings' => :edit
-  #     patch '/settings' => :update
-  #     put   '/settings' => :update
-
-  #     delete '/'        => :destroy
-  #   end
-  # end
-
-
-
-
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

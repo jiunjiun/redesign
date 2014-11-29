@@ -1,0 +1,11 @@
+.panel.panel-default
+  / Default panel contents
+  .panel-heading= t('options')
+  -# .panel-body
+    -# %p ...
+  / List group
+  %ul.list-group
+    %li.list-group-item
+      = link_to t('helper.edit'), project_editor_path
+    %li.list-group-item
+      = link_to t('settings'), project_settings_path

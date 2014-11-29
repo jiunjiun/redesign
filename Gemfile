@@ -70,3 +70,5 @@ gem 'puma'
 gem 'google-analytics-rails'
 
 gem 'nprogress-rails'
+
+gem 'codemirror-rails'
