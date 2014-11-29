@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
     def current_page_user
       @current_page_user = User.find_by_username(params[:username])
-      render_404 unless @current_page_user
+      render_404 unless @current_page_user || root_path == request.fullpath
     end
 
     def current_user?
