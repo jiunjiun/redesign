@@ -16,6 +16,7 @@ tw:
     delete           : '刪除'
     danger           : '注意'
     updated          : '更新完成'
+    back             : '返回'
 
 
 

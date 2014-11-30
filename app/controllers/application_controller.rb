@@ -3,16 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :current_page_user
-  helper_method :current_manage_user?
+  # before_action :current_page_user
+  helper_method :current_user_access?
 
   private
     def current_page_user
       @current_page_user = User.find_by_username(params[:username])
-      render_404 unless @current_page_user || root_path == request.fullpath
+      render_404 unless @current_page_user
     end
 
-    def current_user?
+    def current_user_access?
       @current_page_user.username == current_user.username
     end
 

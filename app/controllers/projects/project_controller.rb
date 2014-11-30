@@ -1,4 +1,4 @@
-class Projects::ProjectController < Projects::AccessController
+class Projects::ProjectController < ApplicationController
   before_filter :set_project, only: [:edit, :update, :destroy]
 
   def new

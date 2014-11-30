@@ -8,7 +8,7 @@
       / List group
       %ul.list-group
         %li.list-group-item
-          =link_to t('profile'), settings_profiles_path
+          =link_to t('helper.back'), project_path(params[:username], @project.name)
   .col-md-9
     - if @project.errors.any?
       .alert.alert-danger{:role => "alert"}

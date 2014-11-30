@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :current_page_user
+
   def index
     @projects = Project.where({user: @current_page_user})
   end
