@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user_access?
-      @current_page_user.username == current_user.username
+      user_signed_in?
+      @current_page_user.username == current_user.username if user_signed_in?
     end
 
     def render_404
