@@ -1,37 +1,40 @@
--# - if user_signed_in?
--#   = current_user.name
--#   = link_to( t('new_object'), new_admin_projects_path)
--#   = link_to( t('sign_out'), destroy_user_session_path, :method => :delete)
--# - else
--#   = link_to(t('sign_in'), new_user_session_path)
-
-%nav.navbar.navbar-default{:role => "navigation"}
-  .container
+#main-navbar.navbar.navbar-inverse{:role => "navigation"}
+  .navbar-inner
+    / Main navbar header
     .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => root_path} Redesign
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          %li
-            = link_to home_path(current_user.username) do
-              = image_tag "http://graph.facebook.com/v2.2/#{current_user.uid}/picture?type=normal", size: "24x24", alt: current_user.name, class: "img-rounded"
-              = current_user.name
-          %li
-            = link_to new_path, data: {toggle: "tooltip", placement: "bottom"}, title: t('helper.add') do
-              %i.fa.fa-plus
-          %li
-            = link_to settings_profiles_path, data: {toggle: "tooltip", placement: "bottom"}, title: t('settings') do
-              %i.fa.fa-cog
-          %li
-            = link_to destroy_user_session_path, :method => :delete, data: {toggle: "tooltip", placement: "bottom"}, title: t('sign_out') do
-              %i.fa.fa-sign-out
-        - else
-          %li
-            = button_to user_omniauth_authorize_path(:facebook), class: 'btn btn-default navbar-btn' do
-              %i.fa.fa-facebook
-              = t('sign_in')
+      / Logo
+      %a.navbar-brand{:href => root_path}
+        = image_tag("icon_32.png", alt: "Redesign", size: "24x24", class: "menu_icon")
+        Redesign
+      / Main navbar toggle
+      %button.navbar-toggle.collapsed{"data-target" => "#main-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %i.navbar-icon.fa.fa-bars
+    / / .navbar-header
+    #main-navbar-collapse.collapse.navbar-collapse.main-navbar-collapse
+      / / .navbar-nav
+      .right.clearfix
+        %ul.nav.navbar-nav.pull-right.right-navbar-nav
+          - if user_signed_in?
+            %li
+              = link_to home_path(current_user.username), class: "user-menu"  do
+                = image_tag "http://graph.facebook.com/v2.2/#{current_user.uid}/picture?type=normal", size: "24x24", alt: current_user.name
+                %span
+                  %strong= current_user.name
+              %li
+                = link_to new_path, data: {toggle: "tooltip", placement: "bottom", "original-title"=> t('helper.add')} do
+                  %i.octicon.octicon-plus
+              %li
+                = link_to settings_profiles_path, data: {toggle: "tooltip", placement: "bottom", "original-title"=> t('settings')} do
+                  %i.octicon.octicon-gear
+              %li
+                = link_to destroy_user_session_path, :method => :delete, data: {toggle: "tooltip", placement: "bottom", "original-title"=> t('sign_out')} do
+                  %i.octicon.octicon-sign-out
+          - else
+            %li
+              = button_to user_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-flat navbar-btn' do
+                %i.fa.fa-facebook
+                = t('sign_in')
+          / / .navbar-nav
+        / / .right
+    / / #main-navbar-collapse
+  / / .navbar-inner

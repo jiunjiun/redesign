@@ -14,12 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require PixelAdmin/pixel-admin
 //= require codemirror
 
 //= require codemirror/modes/css
-
 //= require codemirror/keymaps/sublime
-
 //= require codemirror/modes/css
 
 //= require codemirror/addons/fold/foldcode
@@ -30,6 +29,7 @@
 //= require_tree .
 
 $ ->
+  init = []
   $('[data-toggle="tooltip"]').tooltip()
   initialize = ->
     myTextArea = document.getElementById("project_stylesheet")

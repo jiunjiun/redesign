@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 
 # gem 'compass-rails'
 gem "font-awesome-rails"
+gem 'octicons-rails'
 gem 'bootstrap-sass'
 gem 'haml'
 
