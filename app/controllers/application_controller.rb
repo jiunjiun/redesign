@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
     def current_page_user
       @current_page_user = User.find_by_username(params[:username])
-      render_404 unless @current_page_user
+      render_500 unless @current_page_user
     end
 
     def current_user_access?
@@ -31,10 +31,14 @@ class ApplicationController < ActionController::Base
       render_optional_error_file(403)
     end
 
+    def render_500
+      render_optional_error_file(500)
+    end
+
     def render_optional_error_file(status_code)
       status = status_code.to_s
-      fname = %W(404 403 422 500).include?(status) ? status : 'unknown'
-      render template: "/errors/#{fname}", format: [:html],
-             handler: [:haml], status: status, layout: 'application'
+      @fname = %W(404 403 422 500).include?(status) ? status : 'unknown'
+      render template: "/errors/#{@fname}", format: [:html],
+             handler: [:haml], status: status, layout: 'errors'
     end
 end

@@ -1,14 +1,30 @@
 #setting_profile
-  - if @profile.errors.any?
-    .alert.alert-danger{:role => "alert"}
-      %button.close{"data-dismiss" => "alert", :type => "button"}
-        %span{"aria-hidden" => "true"} ×
-        %span.sr-only Close
-      - @profile.errors.each do |attr, message|
-        = message
   .panel.panel-default
     / Default panel contents
     .panel-heading
       %h3.panel-title= t('profile')
     .panel-body
-      = render "form"
+      = form_for @profile, url: settings_profiles_path, method: :post do |f|
+        .form-group{class: ('has-error' if @profile.errors.include? :username)}
+          = f.label :username, t('profiles.username'), class: 'control-label'
+          = f.text_field :username, class: 'form-control', placeholder: t('profiles.username')
+          - if @profile.errors.include? :username
+            %p.help-block
+              - @profile.errors[:username].each do |message|
+                = message
+        .form-group{class: ('has-error' if @profile.errors.include? :name)}
+          = f.label :name, t('profiles.name'), class: 'control-label'
+          = f.text_field :name, class: 'form-control', placeholder: t('profiles.name')
+          - if @profile.errors.include? :name
+            %p.help-block
+              - @profile.errors[:name].each do |message|
+                = message
+        .form-group{class: ('has-error' if @profile.errors.include? :email)}
+          = f.label :email, t('profiles.email'), class: 'control-label'
+          = f.text_field :email, class: 'form-control', placeholder: t('profiles.email')
+          - if @profile.errors.include? :email
+            %p.help-block
+              - @profile.errors[:email].each do |message|
+                = message
+        %p
+          = f.submit t('helper.update'), class: 'btn btn-success btn-flat'

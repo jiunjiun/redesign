@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
     self.user = current_user
     save
   end
+
+  def css_file
+    "#{user.username}/#{name}.css"
+  end
 end

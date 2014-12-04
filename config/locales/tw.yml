@@ -7,17 +7,17 @@ tw:
   profile : '個人資料'
 
   helper:
-    you_are_here     : '目前在:'
-    are_you_sure     : '確定刪除嗎?'
-    list             : '清單'
-    add              : '新增'
-    edit             : '修改'
-    update           : '更新'
-    delete           : '刪除'
-    save             : '儲存'
-    danger           : '注意'
-    updated          : '更新完成'
-    back             : '返回'
+    you_are_here       : '目前在:'
+    are_you_sure_delete: '確定刪除嗎?'
+    list               : '清單'
+    add                : '新增'
+    edit               : '修改'
+    update             : '更新'
+    delete             : '刪除'
+    save               : '儲存'
+    danger             : '注意'
+    updated            : '更新完成'
+    back               : '返回'
 
 
 
@@ -31,6 +31,7 @@ tw:
     name:     '姓名'
     username: '使用者帳戶'
     email:    'Email'
+    url:      '網址'
 
   activerecord:
     errors:

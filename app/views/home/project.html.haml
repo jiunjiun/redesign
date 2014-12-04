@@ -2,21 +2,16 @@
   .col-md-12.css_link
     .input-group
       %span.input-group-addon CSS
-      %input.form-control#css_link{placeholder: "CSS", type: "text", value: "#{root_url}#{@current_page_user.username}/#{@project.name}.css"}
+      %input.form-control#css_link{placeholder: "CSS", type: "text", value: project_css_path(@project)}
   .row
     .col-md-12
       .hide
         = text_area_tag :stylesheet, @project.stylesheet, id: 'css_code'
       - if current_user_access?
         .col-md-10
-          .panel.colourable
-            .panel-heading
-              %span.panel-title Complete CSS
-            .panel-body
-              .code
+          = render partial: 'complete_css'
         .col-md-2
           = render partial: 'option'
       - else
         .col-md-12
-          %h4 Complete CSS
-          .code
+          = render partial: 'complete_css'

@@ -10,34 +10,28 @@
         %li.list-group-item
           =link_to t('helper.back'), project_path(params[:username], @project.name)
   .col-md-9
-    - if @project.errors.any?
-      .alert.alert-danger{:role => "alert"}
-        %button.close{"data-dismiss" => "alert", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        - @project.errors.each do |attr, message|
-          = message
     .panel.panel-default
       / Default panel contents
       .panel-heading
         %h3.panel-title= t('settings')
       .panel-body
         = form_for @project, url: project_settings_path do |f|
-          %dl
-            %dt= t('profiles.name')
-            %dd= f.text_field :name, class: 'form-control', placeholder: t('project.name')
-            %dt= t('profiles.url')
-            %dd= f.url_field :url, class: 'form-control', placeholder: t('project.url')
+          .form-group{class: ('has-error' if @project.errors.include? :name)}
+            = f.label :name, t('profiles.name'), class: 'control-label'
+            = f.text_field :name, class: 'form-control', placeholder: t('project.name')
+            - if @project.errors.include? :name
+              %p.help-block
+                - @project.errors[:name].each do |message|
+                  = message
+          .form-group{class: ('has-error' if @project.errors.include? :url)}
+            = f.label :url, t('profiles.url'), class: 'control-label'
+            = f.url_field :url, class: 'form-control', placeholder: t('project.url')
+            - if @project.errors.include? :url
+              %p.help-block
+                - @project.errors[:url].each do |message|
+                  = message
           %p
-            = f.submit t('helper.update'), class: 'btn btn-success'
-    -# danger
-    - if @project.errors.any?
-      .alert.alert-danger{:role => "alert"}
-        %button.close{"data-dismiss" => "alert", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        - @project.errors.each do |attr, message|
-          = message
+            = f.submit t('helper.update'), class: 'btn btn-success btn-flat'
     .panel.panel-danger
       / Default panel contents
       .panel-heading
@@ -46,4 +40,4 @@
         %h4.pull-left.text-danger
           = t('project.del_description')
         %p.pull-right
-          = button_to t('helper.delete'), project_settings_path, method: :delete, class: 'btn btn-danger pull-right', data: { confirm: "Are you sure?" }
+          = button_to t('helper.delete'), project_settings_path, method: :delete, class: 'btn btn-danger btn-flat pull-right', data: { confirm: t("helper.are_you_sure_delete") }
