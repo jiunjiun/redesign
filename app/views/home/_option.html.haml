@@ -6,6 +6,12 @@
   / List group
   %ul.list-group
     %li.list-group-item
-      = link_to t('helper.edit'), project_editor_path
+      = link_to project_editor_path do
+        %span.octicon.octicon-pencil
+        &nbsp;
+        = t('helper.edit')
     %li.list-group-item
-      = link_to t('settings'), project_settings_path
+      = link_to project_settings_path do
+        %span.octicon.octicon-tools
+        &nbsp;
+        = t('settings')

@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # before_action :current_page_user
   helper_method :current_user_access?
+  helper_method :project_page?
 
   private
     def current_page_user
@@ -15,6 +15,12 @@ class ApplicationController < ActionController::Base
     def current_user_access?
       user_signed_in?
       @current_page_user.username == current_user.username if user_signed_in?
+    end
+
+    def project_page?
+      params[:controller] == 'home' && params[:action] == 'project' ||
+      params[:controller] == 'projects/editors' && params[:action] == 'index' ||
+      params[:controller] == 'projects/settings' && params[:action] == 'index'
     end
 
     def render_404

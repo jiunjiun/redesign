@@ -1,0 +1,21 @@
+#project-nav
+  .page-header
+    .row
+      / Page header, center on small screens
+      %h3.col-xs-12.col-sm-6.text-left-sm
+        %i.fa.fa-css3.page-header-icon
+        \&nbsp;
+        = link_to @current_page_user.username, home_path(@current_page_user.username)
+        \/
+        = link_to @project.name, project_path(@current_page_user.username, @project.name)
+        %small
+          \-
+          = link_to @project.url, @project.url
+      .col-xs-12.col-sm-6.text-right
+        %button.btn.btn-flat.btn-labeled.btn-default
+          %span.btn-label.icon.octicon.octicon-star
+          Start
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        %button.btn.btn-flat.btn-labeled.btn-default
+          %span.btn-label.icon.octicon.octicon-repo-forked
+          Fork

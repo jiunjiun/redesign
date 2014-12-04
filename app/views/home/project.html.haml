@@ -1,28 +1,22 @@
 .row#project
-  .col-md-12.header
-    .page-header
-      %h2
-        = link_to @current_page_user.username, home_path(@current_page_user.username)
-        = " / #{@project.name}"
-        %small
-          \-
-          = link_to @project.url, @project.url
-
   .col-md-12.css_link
     .input-group
       %span.input-group-addon CSS
       %input.form-control#css_link{placeholder: "CSS", type: "text", value: "#{root_url}#{@current_page_user.username}/#{@project.name}.css"}
   .row
     .col-md-12
+      .hide
+        = text_area_tag :stylesheet, @project.stylesheet, id: 'css_code'
       - if current_user_access?
         .col-md-10
-          %h4 Complete CSS
-          %pre
-            = @project.stylesheet
+          .panel.colourable
+            .panel-heading
+              %span.panel-title Complete CSS
+            .panel-body
+              .code
         .col-md-2
           = render partial: 'option'
       - else
         .col-md-12
           %h4 Complete CSS
-          %pre
-            = @project.stylesheet
+          .code

@@ -1,11 +1,37 @@
 .row#home
   .col-md-3
-    .avatar
-      = image_tag "http://graph.facebook.com/#{@current_page_user.uid}/picture?type=large", alt: @current_page_user.name, class: "img-rounded"
-    .names
-      %h3= @current_page_user.name
-    .details
-      %p= @current_page_user.email
+    .profile-block.text-center
+      .panel.profile-photo
+        = image_tag "http://graph.facebook.com/#{@current_page_user.uid}/picture?type=large", alt: @current_page_user.name
+      .profile-full-name
+        %h3= @current_page_user.name
+
+      -# %a.btn.btn-success{:href => "#"}
+      -#   %i.fa.fa-check
+      -#   Following
+    .panel.panel-transparent.text-center
+      .panel-heading
+        %span.panel-title
+      .list-group
+        %a.list-group-item{:href => "#"}
+          %i.profile-list-icon.fa.fa-envelope{:style => "color: #888"}
+          dsteiner@example.com
+    -# .panel.panel-transparent
+    -#   .panel-heading
+    -#     %span.panel-title About me
+    -#   .panel-body
+    -#     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+    -#     %a{:href => "#"} dolore magna
+    -#     aliqua.
+
+
+  -# .col-md-3
+  -#   .avatar
+  -#     = image_tag "http://graph.facebook.com/#{@current_page_user.uid}/picture?type=large", alt: @current_page_user.name, class: "img-rounded"
+  -#   .names
+  -#     %h3= @current_page_user.name
+  -#   .details
+  -#     %p= @current_page_user.email
   .col-md-9
     .panel.panel-default
       / Default panel contents

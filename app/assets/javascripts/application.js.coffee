@@ -9,15 +9,39 @@
 # //
 # // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 # // about supported directives.
-# //
+
+#
+#                        _oo0oo_
+#                       o8888888o
+#                       88" . "88
+#                       (| -_- |)
+#                       0\  =  /0
+#                     ___/`---'\___
+#                   .' \\|     |// '.
+#                  / \\|||  :  |||// \
+#                 / _||||| -:- |||||- \
+#                |   | \\\  -  /// |   |
+#                | \_|  ''\---/''  |_/ |
+#                \  .-\__  '-'  ___/-. /
+#              ___'. .'  /--.--\  `. .'___
+#           ."" '<  `.___\_<|>_/___.' >' "".
+#          | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+#          \  \ `_.   \_ __\ /__ _/   .-` /  /
+#      =====`-.____`.___ \_____/___.-`___.-'=====
+#                        `=---='
+#
+#      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#                佛祖保佑         永無BUG
+#
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require PixelAdmin/pixel-admin
+# require PixelAdmin/pixel-admin
 //= require codemirror
 
-//= require codemirror/modes/css
+
 //= require codemirror/keymaps/sublime
 //= require codemirror/modes/css
 
@@ -31,6 +55,11 @@
 $ ->
   init = []
   $('[data-toggle="tooltip"]').tooltip()
+
+  $("input#css_link").on "click", ->
+    $(this).select()
+    return
+
   initialize = ->
     myTextArea = document.getElementById("project_stylesheet")
     if myTextArea
@@ -49,8 +78,27 @@ $ ->
           "CodeMirror-linenumbers"
           "CodeMirror-foldgutter"
         ]
-
       )
+
+    $(".code").each ->
+      code = $("#css_code").val()
+      $('.hide').remove()
+      CodeMirror this,
+        readOnly   : true
+        value      : code
+
+        mode        : "css"
+        # theme       : "monokai"
+        lineNumbers : true
+        lineWrapping: true
+        tabSize     : 2
+        tabindex    : 0
+        keyMap      : "sublime"
+
+      return
+
   $(document).ready(initialize)
   $(document).on('page:load', initialize)
+
+
 

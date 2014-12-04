@@ -23,7 +23,9 @@
 <body class="theme-silver main-menu-animated" cz-shortcut-listen="true">
 
 <%= render partial: "common/nav" %>
+
 <div id="content-wrapper">
+  <%= render partial: "common/project_nav" if project_page? %>
   <article>
     <%= yield %>
   </article>

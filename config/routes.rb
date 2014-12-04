@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get '/:project_name' => :project, as: 'project'
 
     scope module: :projects, path: '/:project_name', as: 'project' do
+      get '/start' => :start
+      get '/fork'  => :fork
       resource :settings, only: [:update, :destroy] do
         get :index, on: :collection
       end
