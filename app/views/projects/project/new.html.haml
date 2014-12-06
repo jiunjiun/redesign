@@ -1,7 +1,26 @@
 .row
   .col-lg-12
     %h1.page-header
-      = t('helper.add', :model => '')
+      = t('helper.add')
 .row
   .col-lg-12
-    = render 'form'
+    = form_for(@project, url: new_path, html: { :multipart => true}) do |f|
+      .form-group{class: ('has-error' if @project.errors.include? :name)}
+        = f.label :name, t('project.name'), class: 'control-label'
+        = f.text_field :name, class: 'form-control', placeholder: t('project.name')
+        - if @project.errors.include? :name
+          %p.help-block
+            - @project.errors[:name].each do |message|
+              = message
+      .form-group{class: ('has-error' if @project.errors.include? :url)}
+        = f.label :url, t('project.url'), class: 'control-label'
+        = f.url_field :url, class: 'form-control', placeholder: t('project.url')
+        - if @project.errors.include? :url
+          %p.help-block
+            - @project.errors[:url].each do |message|
+              = message
+      .row
+        .col-md-6.pull-right
+          .pull-right
+            = link_to 'Back', home_path(current_user.username), class: 'btn btn-default btn-flat'
+            = f.submit class: 'btn btn-success btn-flat'
