@@ -41,4 +41,12 @@ class ApplicationController < ActionController::Base
       render template: "/errors/#{@fname}", format: [:html],
              handler: [:haml], status: status, layout: 'errors'
     end
+
+    def after_sign_in_path_for(resource)
+      if resource.sign_in_count == 1
+        settings_profiles_path
+      else
+        root_path
+      end
+    end
 end

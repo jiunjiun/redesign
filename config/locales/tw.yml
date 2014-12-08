@@ -11,6 +11,7 @@ tw:
     are_you_sure_delete: '確定刪除嗎?'
     list               : '清單'
     add                : '新增'
+    add_project        : '建立專案'
     edit               : '修改'
     update             : '更新'
     delete             : '刪除'
@@ -20,6 +21,9 @@ tw:
     back               : '返回'
 
 
+  signs:
+    slogan: '簡單、靈活的方式改變世界'
+    signin_text: '登入你的Facebook吧!!'
 
   project:
     name      : '名稱'

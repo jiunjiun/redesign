@@ -6,7 +6,7 @@
   .row
     .col-md-12
       .hide
-        = text_area_tag :stylesheet, @project.stylesheet, id: 'css_code'
+        = text_area_tag :stylesheet, @project.style.stylesheet, id: 'css_code'
       - if current_user_access?
         .col-md-10
           = render partial: 'complete_css'

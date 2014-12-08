@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'index#index'
 
-  devise_for :users, :controllers => { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks", sessions: "users/sessions" }, skip: [:registration]
 
   namespace :settings do
     resources :profiles, only: [:index, :create]

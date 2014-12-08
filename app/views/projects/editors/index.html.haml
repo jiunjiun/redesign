@@ -1,8 +1,9 @@
 .row
   .col-lg-12
     = form_for(@project, url: project_editor_path) do |f|
-      %p
-        = f.text_area :stylesheet, class: 'form-control', placeholder: t('project.stylesheet')
+      = f.fields_for :style_attributes do |style_fields|
+        %p
+          = style_fields.text_area :stylesheet, class: 'form-control'
       .row
         .col-md-6.pull-right
           .pull-right

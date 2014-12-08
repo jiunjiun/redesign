@@ -6,6 +6,7 @@ class Settings::ProfilesController < AdminController
 
   def create
     if @profile.update(profile_params)
+      flash[:done] = true
       redirect_to settings_profiles_path
     else
       render :index

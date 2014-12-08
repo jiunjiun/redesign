@@ -14,6 +14,6 @@ class Projects::EditorsController < Projects::AccessController
     end
 
     def project_params
-      params.require(:project).permit(:stylesheet)
+      params.require(:project).permit(style_attributes: [:stylesheet])
     end
 end

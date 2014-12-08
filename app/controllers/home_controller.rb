@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     @project = Project.find_by({user: @current_page_user, name: params[:project_name]})
     respond_to do |format|
       format.html
-      format.css  {render text: @project.stylesheet, content_type: "text/css"}
+      format.css  {render text: @project.style.stylesheet, content_type: "text/css"}
     end
   end
 

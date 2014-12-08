@@ -1,4 +1,8 @@
 #setting_profile
+  - if flash[:done]
+    .alert.alert-success.alert-dark
+      %button.close{"data-dismiss" => "alert", :type => "button"} ×
+      %strong= t('helper.updated')
   .panel.panel-default
     / Default panel contents
     .panel-heading

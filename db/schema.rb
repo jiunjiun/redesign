@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118050828) do
+ActiveRecord::Schema.define(version: 20141206214256) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -23,17 +23,49 @@ ActiveRecord::Schema.define(version: 20141118050828) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
-  create_table "projects", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "url"
-    t.text     "stylesheet"
-    t.text     "stylesheet_mini"
+  create_table "plugins", force: true do |t|
+    t.integer  "project_id"
+    t.text     "name"
+    t.string   "version"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "plugins", ["project_id"], name: "index_plugins_on_project_id", using: :btree
+
+  create_table "projects", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "url"
+    t.string   "description"
+    t.integer  "form_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["form_user_id"], name: "index_projects_on_form_user_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "starts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "starts", ["project_id"], name: "index_starts_on_project_id", using: :btree
+  add_index "starts", ["user_id"], name: "index_starts_on_user_id", using: :btree
+
+  create_table "styles", force: true do |t|
+    t.integer  "project_id"
+    t.text     "stylesheet"
+    t.text     "stylesheet_mini"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "styles", ["project_id"], name: "index_styles_on_project_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false

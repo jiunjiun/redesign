@@ -54,14 +54,14 @@
 
 $ ->
   init = []
-  $('[data-toggle="tooltip"]').tooltip()
-
-  $("input#css_link").on "click", ->
-    $(this).select()
-    return
-
   initialize = ->
-    myTextArea = document.getElementById("project_stylesheet")
+    $('[data-toggle="tooltip"]').tooltip()
+    $("input#css_link").on "click", ->
+      $(this).select()
+      return
+
+
+    myTextArea = document.getElementById("project_style_attributes_stylesheet")
     if myTextArea
       myCodeMirror = CodeMirror.fromTextArea(myTextArea,
         mode        : "css"
