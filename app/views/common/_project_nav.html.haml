@@ -11,6 +11,11 @@
         %small
           \-
           = link_to @project.url, @project.url
+        - if @project.from_project
+          .fork-details
+            %small
+              forked from
+              = link_to "#{@project.from_project.user.username} / #{@project.from_project.name}", project_path(@project.from_project.user.username, @project.from_project.name)
       .col-xs-12.col-sm-6.text-right
         = button_to project_star_path, method: :get, remote: true, id: "star", class: "btn btn-flat btn-labeled #{star}" do
           %span.btn-label.icon.octicon.octicon-star
@@ -24,4 +29,4 @@
             &nbsp;
             Fork
           %span#fork_count
-            0
+            = @fork_count

@@ -14,4 +14,4 @@
       %ul.list-group
         - @stars.each do |star|
           %li.list-group-item
-            = link_to(star.project.name, project_path(@current_page_user.username, star.project.name))
+            = link_to(star.project.name, project_path(star.project.user.username, star.project.name))

@@ -1,5 +1,6 @@
 class Projects::EditorsController < Projects::AccessController
   before_filter :set_project
+  before_action :project_data
 
   def index
   end

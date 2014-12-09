@@ -13,20 +13,21 @@ class HomeController < ApplicationController
   end
 
   def project
-    respond_to do |format|
-      format.html
-      format.css  {render text: @project.style.stylesheet, content_type: "text/css"}
+    unless @project.nil?
+      respond_to do |format|
+        format.html {nil}
+        format.css  {render text: @project.style.stylesheet, content_type: "text/css"}
+      end
+    else
+      respond_to do |format|
+        format.html {render_404}
+        format.css  {render text: nil, content_type: "text/css"}
+      end
     end
   end
 
   private
     def project_params
       params.require(:project).permit(:name, :url, :stylesheet)
-    end
-
-    def project_data
-      @project            = Project.find_by({user: @current_page_user, name: params[:project_name]})
-      @star               = Star.where({user: current_user, project: @project})
-      @star_project_count = Star.where({project: @project}).size
     end
 end

@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
       @current_page_user.username == current_user.username if user_signed_in?
     end
 
+    def project_data
+      @project            = Project.find_by({user: @current_page_user, name: params[:project_name]})
+      @star               = Star.where({user: current_user, project: @project})
+      @star_project_count = Star.where({project: @project}).size
+
+      @fork_count         = Project.where({from_project: @project}).size
+    end
+
     def project_page?
       params[:controller] == 'home' && params[:action] == 'project' ||
       params[:controller] == 'projects/editors' && params[:action] == 'index' ||

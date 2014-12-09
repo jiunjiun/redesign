@@ -1,6 +1,7 @@
 class Projects::ProjectController < ApplicationController
   before_action :user_access
   before_action :current_page_user, only: [:star, :fork]
+  before_action :set_project, only: [:star, :fork]
 
   def new
     @project = Project.new
@@ -16,8 +17,7 @@ class Projects::ProjectController < ApplicationController
   end
 
   def star
-    project = Project.find_by({user: @current_page_user, name: params[:project_name]})
-    star_params = {user: current_user, project: project}
+    star_params = {user: current_user, project: @project}
 
     status = "unstar"
     status = "star" unless Star.persisted?(star_params)
@@ -25,12 +25,17 @@ class Projects::ProjectController < ApplicationController
   end
 
   def fork
-
+    redirect_to project_path(current_user.username, @project.name) if @project.fork(current_user)
   end
 
   private
+    def set_project
+      @project = Project.find_by({user: @current_page_user, name: params[:project_name]})
+    end
+
     def user_access
-      render_404 unless user_signed_in?
+      flash['user_return_to'] = settings_profiles_path
+      redirect_to new_user_session_path unless user_signed_in?
     end
 
     def project_params
