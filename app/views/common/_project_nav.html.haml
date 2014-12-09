@@ -12,10 +12,16 @@
           \-
           = link_to @project.url, @project.url
       .col-xs-12.col-sm-6.text-right
-        %button.btn.btn-flat.btn-labeled.btn-default
+        = button_to project_star_path, method: :get, remote: true, id: "star", class: "btn btn-flat btn-labeled #{star}" do
           %span.btn-label.icon.octicon.octicon-star
-          Start
+            &nbsp;
+            Star
+          %span#star_count
+            = @star_project_count
         &nbsp;&nbsp;&nbsp;&nbsp;
-        %button.btn.btn-flat.btn-labeled.btn-default
+        = link_to project_fork_path, class: "btn btn-flat btn-labeled btn-default" do
           %span.btn-label.icon.octicon.octicon-repo-forked
-          Fork
+            &nbsp;
+            Fork
+          %span#fork_count
+            0

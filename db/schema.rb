@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206214256) do
+ActiveRecord::Schema.define(version: 20141208201008) do
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -38,13 +38,23 @@ ActiveRecord::Schema.define(version: 20141206214256) do
     t.string   "name"
     t.string   "url"
     t.string   "description"
-    t.integer  "form_user_id"
+    t.integer  "from_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "projects", ["form_user_id"], name: "index_projects_on_form_user_id", using: :btree
+  add_index "projects", ["from_user_id"], name: "index_projects_on_from_user_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "stars", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stars", ["project_id"], name: "index_stars_on_project_id", using: :btree
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id", using: :btree
 
   create_table "starts", force: true do |t|
     t.integer  "user_id"

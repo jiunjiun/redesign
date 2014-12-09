@@ -1,5 +1,6 @@
 class Projects::ProjectController < ApplicationController
   before_action :user_access
+  before_action :current_page_user, only: [:star, :fork]
 
   def new
     @project = Project.new
@@ -12,6 +13,19 @@ class Projects::ProjectController < ApplicationController
     else
       render :new
     end
+  end
+
+  def star
+    project = Project.find_by({user: @current_page_user, name: params[:project_name]})
+    star_params = {user: current_user, project: project}
+
+    status = "unstar"
+    status = "star" unless Star.persisted?(star_params)
+    render json: {status: status}
+  end
+
+  def fork
+
   end
 
   private

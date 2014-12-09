@@ -1,7 +1,9 @@
 class Project < ActiveRecord::Base
   belongs_to :user
+  belongs_to :form_user, class: 'User'
   has_one :style, :dependent => :destroy
   has_one :plugin, :dependent => :destroy
+  has_one :star
 
   accepts_nested_attributes_for :style, :plugin
 

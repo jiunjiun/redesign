@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  has_one :project
+  has_one :project, :dependent => :destroy
   has_one :identity, -> { select(:uid) }, class_name: :Identity
+  has_many :star, :dependent => :destroy
 
   def uid
     identity.uid

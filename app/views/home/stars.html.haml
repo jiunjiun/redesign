@@ -1,0 +1,17 @@
+.row#home
+  .col-md-3
+    = render partial: "profile"
+  .col-md-9
+    .panel.panel-default
+      / Default panel contents
+      .panel-heading
+        = t('stars')
+        %ul.nav.nav-tabs.nav-tabs-xs
+          %li
+            %a{href: home_path(params[:username])}
+              Projects
+      / List group
+      %ul.list-group
+        - @stars.each do |star|
+          %li.list-group-item
+            = link_to(star.project.name, project_path(@current_page_user.username, star.project.name))

@@ -7,7 +7,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string      :url
       t.string      :description
 
-      t.references  :form_user, index: true
+      t.references  :from_user, index: true
 
       t.timestamps
     end

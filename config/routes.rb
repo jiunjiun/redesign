@@ -16,11 +16,12 @@ Rails.application.routes.draw do
   # v3
   scope controller: :home, path: '/:username' do
     get '/' => :index, as: 'home'
+    get '/stars' => :stars, as: 'stars'
     get '/:project_name' => :project, as: 'project'
 
     scope module: :projects, path: '/:project_name', as: 'project' do
-      get '/start' => :start
-      get '/fork'  => :fork
+      get '/star', to: 'project#star'
+      get '/fork', to: 'project#fork'
       resource :settings, only: [:update, :destroy] do
         get :index, on: :collection
       end
