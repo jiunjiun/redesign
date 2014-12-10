@@ -31,6 +31,11 @@ $l_pd_r: 26px
 // @import "bootstrap"
 @import "font-awesome"
 
+html, body
+  margin: 0
+  padding: 0
+  height: 100%
+
 #main-navbar
   .octicon-plus
     margin: 1px
@@ -48,6 +53,38 @@ $l_pd_r: 26px
       font-size: 9pt
       margin-top: 10px
       padding-left: 40px
+
+body#index
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif
+
+  #content-wrapper
+    height: 100%
+    padding: 0
+    padding-top: 47px
+
+  .header
+    color: #fff
+    height: 100%
+    background-color: #0091EA
+    padding-top: 12%
+
+    background-image: -webkit-radial-gradient(50% top, rgba(84,90,182,0.6) 0%, rgba(84,90,182,0) 75%), -webkit-radial-gradient(right top, #4FC3F7 0%, rgba(121,74,162,0) 57%)
+
+    .logo
+      text-shadow: 3px 3px 5px #01579B
+
+    h1
+      font-size: 40pt
+    h1, .slogan
+      text-shadow: 3px 3px 5px #01579B
+
+    .download
+      padding-top: 20px
+      img
+        background-color: #FFF
+        -webkit-box-shadow: 3px 3px 5px #0277BD
+        -moz-box-shadow: 3px 3px 5px #0277BD
+        box-shadow: 3px 3px 5px #0277BD
 
 article
   padding-left: $l_pd_l
@@ -89,6 +126,17 @@ article
 
     .complete
       border-top: 1px solid #f00
+
+.footer
+  border-top: 1px solid #eee
+  padding: 30px
+
+  position: relative
+  .logo
+    position: absolute
+    left: 48%
+    top: 13px
+
 
 .button_to, .button_to div
   display: inline

@@ -1,1 +1,13 @@
-%h1 Index#index
+%section.header
+  .container
+    .col-md-6.text-center
+      = image_tag("icon/icon_256.png", alt: "Redesign", class: "logo")
+    .col-md-6
+      %h1
+        Redesign
+      .slogan
+        %p
+          = t('signs.slogan')
+      .download
+        = link_to "https://chrome.google.com/webstore/detail/redesign/hbfmhlnonhpdkkcjkpclioilfbkjfkgd?hl=zh-TW" do
+          = image_tag("ChromeWebStore_Badge_v2_340x96.png", size: "206x58", alt: "下載 Chrome 擴充套件", class: "ChromeWebStore_Badge")

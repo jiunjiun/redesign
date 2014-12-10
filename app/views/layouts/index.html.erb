@@ -21,16 +21,14 @@
     <script src="assets/javascripts/ie.min.js"></script>
   <![endif]-->
 </head>
-<body class="theme-silver main-menu-animated" cz-shortcut-listen="true">
+<body id="index" class="theme-silver main-menu-animated" cz-shortcut-listen="true">
 
 <%= render partial: "common/nav" %>
 
 <div id="content-wrapper">
-  <%= render partial: "common/project_nav" if project_page? %>
-  <article>
-    <%= yield %>
-  </article>
+  <%= yield %>
 </div>
 <%= render partial: "common/footer" %>
+
 </body>
 </html>
