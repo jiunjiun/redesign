@@ -20,6 +20,8 @@
   <!--[if lt IE 9]>
     <script src="assets/javascripts/ie.min.js"></script>
   <![endif]-->
+
+  <%= analytics_init if Rails.env.production? %>
 </head>
 <body id="index" class="theme-silver main-menu-animated" cz-shortcut-listen="true">
 
