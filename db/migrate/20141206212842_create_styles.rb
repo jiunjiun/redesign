@@ -5,7 +5,7 @@ class CreateStyles < ActiveRecord::Migration
 
       t.text   :stylesheet
       t.text   :stylesheet_mini
-      t.string :type
+      t.string :content_type
 
       t.timestamps
     end

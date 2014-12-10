@@ -1,7 +1,7 @@
 .row
   .col-lg-12
     = form_for(@project, url: project_editor_path) do |f|
-      = f.fields_for :style_attributes do |style_fields|
+      = f.fields_for :style do |style_fields|
         %p
           = style_fields.text_area :stylesheet, class: 'form-control'
       .row
