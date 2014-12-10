@@ -1,4 +1,5 @@
 class Projects::AccessController < ApplicationController
+  before_action :authenticate_user!
   before_action :current_page_user
   before_action :access_user
 

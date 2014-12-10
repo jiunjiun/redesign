@@ -56,46 +56,6 @@ $ ->
   init = []
   initialize = ->
     $('[data-toggle="tooltip"]').tooltip()
-    $("input#css_link").on "click", ->
-      $(this).select()
-      return
-
-
-    myTextArea = document.getElementById("project_style_attributes_stylesheet")
-    if myTextArea
-      myCodeMirror = CodeMirror.fromTextArea(myTextArea,
-        mode        : "css"
-        theme       : "monokai"
-        lineNumbers : true
-        lineWrapping: true
-        tabSize     : 2
-        tabindex    : 0
-        lint        : true
-        keyMap      : "sublime"
-
-        gutters: [
-          "CodeMirror-lint-markers"
-          "CodeMirror-linenumbers"
-          "CodeMirror-foldgutter"
-        ]
-      )
-
-    $(".code").each ->
-      code = $("#css_code").val()
-      $('.hide').remove()
-      CodeMirror this,
-        readOnly   : true
-        value      : code
-
-        mode        : "css"
-        # theme       : "monokai"
-        lineNumbers : true
-        lineWrapping: true
-        tabSize     : 2
-        tabindex    : 0
-        keyMap      : "sublime"
-
-      return
 
   $(document).ready(initialize)
   $(document).on('page:load', initialize)

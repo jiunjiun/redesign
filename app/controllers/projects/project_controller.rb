@@ -1,5 +1,5 @@
 class Projects::ProjectController < ApplicationController
-  before_action :user_access
+  before_action :authenticate_user!
   before_action :current_page_user, only: [:star, :fork]
   before_action :set_project, only: [:star, :fork]
 
@@ -31,11 +31,6 @@ class Projects::ProjectController < ApplicationController
   private
     def set_project
       @project = Project.find_by({user: @current_page_user, name: params[:project_name]})
-    end
-
-    def user_access
-      flash['user_return_to'] = settings_profiles_path
-      redirect_to new_user_session_path unless user_signed_in?
     end
 
     def project_params
