@@ -27,8 +27,8 @@ class ApplicationController < ActionController::Base
 
     def project_page?
       params[:controller] == 'home' && params[:action] == 'project' ||
-      params[:controller] == 'projects/editors' && params[:action] == 'index' ||
-      params[:controller] == 'projects/settings' && params[:action] == 'index'
+      params[:controller] == 'projects/editors' ||
+      params[:controller] == 'projects/settings'
     end
 
     def render_404
