@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20141208201008) do
     t.integer  "project_id"
     t.text     "stylesheet"
     t.text     "stylesheet_mini"
-    t.string   "type"
+    t.string   "content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
