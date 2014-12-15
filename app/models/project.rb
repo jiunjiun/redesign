@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
       p.build_style
       p.style.stylesheet      = self.style.stylesheet
       p.style.stylesheet_mini = self.style.stylesheet_mini
-      p.style.type            = self.style.type
+      p.style.content_type    = self.style.content_type
       p.style.save
     end
     true
